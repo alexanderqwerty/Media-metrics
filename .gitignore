@@ -1,0 +1,8 @@
+.venv/ 
+venv/ 
+__pycache__/ 
+*.pyc 
+*.pyo 
+.idea/ 
+*.log 
+Media-metrics-main/ 
