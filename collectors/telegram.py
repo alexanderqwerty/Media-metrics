@@ -70,7 +70,10 @@ def _reaction_parts(message: Any) -> tuple[int | None, list[dict[str, Any]]]:
             continue
         total += count
         emoji = raw[: match.start()].strip() if match else raw
-        parts.append({"emoji": emoji, "count": count})
+        if not emoji and "tgme_reaction_paid" in (element.get("class") or []):
+            # Платная реакция Telegram Stars: эмодзи в разметке нет.
+            emoji = "⭐"
+        parts.append({"emoji": emoji or "?", "count": count})
     return total, parts
 
 

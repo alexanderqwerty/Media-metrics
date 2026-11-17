@@ -40,3 +40,16 @@ def test_missing_post_is_no_data() -> None:
     assert record.status is CollectionStatus.NO_DATA
     assert record.views is None
     assert any("не найден" in warning.lower() for warning in record.warnings)
+
+
+def test_paid_star_reaction() -> None:
+    collector = TelegramCollector(
+        text_fetcher=fake_text({"t.me/miet_tv/259": load_text("telegram_miet_tv.html")})
+    )
+
+    record = collector.collect("https://t.me/miet_tv/259")
+
+    assert record.status is CollectionStatus.OK
+    assert record.views == 532
+    assert record.reactions == 34
+    assert record.meta["reactions_breakdown"][0] == {"emoji": "⭐", "count": 3}
