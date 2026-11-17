@@ -45,3 +45,13 @@
 - Идемпотентность записи в Twenty CRM (исключение дубликатов при повторном запуске).
 - Изоляция отказов: сбой парсинга одной площадки не останавливает остальные.
 - Соблюдение 152-ФЗ: тексты комментариев и персональные данные не сохраняются, собираются только количественные показатели.
+
+## Парсеры TikTok, Telegram и Instagram (issue #6)
+Прототип сборщиков: собирает доступные показатели, складывает их в объекты Python и печатает JSON в консоль (Twenty CRM пока не подключена). Запуск:
+
+```bash
+pip install -r requirements.txt
+python main.py 'https://t.me/<channel>/<post>' 'https://www.tiktok.com/@user/video/<id>' 'https://www.instagram.com/reel/<code>/'
+```
+
+Подробности, результаты разведки источников и ограничения — в [docs/parsers-tiktok-telegram-instagram.md](docs/parsers-tiktok-telegram-instagram.md).
